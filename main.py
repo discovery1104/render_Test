@@ -5,7 +5,7 @@ import json
 
 # WebSocketの接続ハンドラ
 async def handler(websocket, path):
-    print("Client connected.")
+    print("A client connected.")
     try:
         async for message in websocket:
             print(f"Received: {message}")
@@ -28,13 +28,13 @@ async def handler(websocket, path):
 # サーバーのメイン関数
 async def main():
     # Render から提供される環境変数 PORT を取得
-    port = int(os.getenv("PORT", 10000))  # デフォルト値は 10000
+    port = int(os.getenv("PORT", 10000))  # デフォルト値は10000
     print(f"Starting WebSocket server on port {port}")
     
     # WebSocket サーバーの起動
     server = await websockets.serve(handler, "0.0.0.0", port)
     await server.wait_closed()
 
-# サーバーを実行
+# スクリプトのエントリーポイント
 if __name__ == "__main__":
     asyncio.run(main())
